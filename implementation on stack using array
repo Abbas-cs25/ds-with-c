@@ -1,47 +1,113 @@
-#include <stdio.h>
-#define MAX 5
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define SIZE 10
 
-int stack[MAX];
-int top = -1;
+int s[SIZE],top=-1;
 
-void push(int value) {
-    if (top == MAX - 1) {
-        printf("Stack Overflow\n");
-    } else {
-        stack[++top] = value;
-        printf("Pushed %d\n", value);
+void isempty()
+{
+    if (top==-1)
+    {
+        printf("the stack is empty");
+    }
+    else
+    {
+        printf("the stack is not empty");
     }
 }
 
-void pop() {
-    if (top == -1) {
-        printf("Stack Underflow\n");
-    } else {
-        printf("Popped %d\n", stack[top--]);
+void isfull()
+{
+    if (top==SIZE-1)
+    {
+        printf("the stack is full");
+    }
+    else
+    {
+        printf("the stack is not full");
     }
 }
 
-void display() {
-    if (top == -1) {
-        printf("Stack is Empty\n");
-    } else {
-        printf("Stack elements: ");
-        for (int i = 0; i <= top; i++) {
-            printf("%d ", stack[i]);
-        }
-        printf("\n");
+void push(int x)
+{
+    if (top==SIZE-1)
+    {
+        printf("the insertion is not possible [stack is full]");
+    }
+    else
+    {
+        top++;
+        printf("enter the number : ");
+        scanf("%d",&x);
+        s[top]=x;
+        printf("successfully insertion");
     }
 }
 
-int main() {
-    push(10);
-    push(20);
-    push(30);
-    display();
-    pop();
-    display();
-    pop();
-    pop();
-    pop(); // Extra pop to show underflow
-    return 0;
+void pop()
+{
+    if (top==-1)
+    {
+        printf("deletion is not possible [stack is empty]");
+    }
+    else
+    {
+        printf("%d",s[top]);
+        top=top-1;
+        printf("successfully deletion");
+    }
+}
+
+void display()
+{
+    if(top==-1)
+    {
+        printf("their is no element in the stack");
+    }
+    else
+    {
+    printf("the elements in the stack : \n");
+    for (int i=0;i<SIZE;i++)
+    {
+        printf("%d\n",s[i]);
+    }
+    }
+
+}
+
+void main()
+{
+    int value,choice;
+    while(1)
+    {
+         printf("\n**********menu**********\n");
+    printf("\n1.isempty \n 2.push \n 3.pop \n 4.isfull  \n 5.display \n 6.exit ");
+    printf("\nenter the choice: ");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+    case 1:
+        isempty();
+        break;
+    case 2:
+        push(value);
+        break;
+    case 3:
+        pop();
+        break;
+    case 4:
+        isfull();
+        break;
+    case 5:
+        display();
+        break;
+    case 6:
+        exit(0);
+        break;
+    default:
+        printf("invalid choice");
+        break;
+    }
+    }
 }
